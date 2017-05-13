@@ -1,37 +1,22 @@
 package com.collabeat.collabeat;
 
-import android.content.Context;
-import android.content.res.ObbInfo;
-import android.graphics.drawable.Drawable;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 /**
  * TODO: write something
  */
-public class BeatButton extends ImageButton
+public class BeatButton
 {
-    Drawable imgOff;
-    Drawable imgOn;
-    Drawable imgOnCurrent;
-    Drawable imgOffCurrent;
-
-    ImageButton imageButton;
+    private final ImageButton imageButton;
 
     private boolean toggleOn = false;
 
     private final Object lock = new Object();
 
-    public BeatButton(Context context) {
-        super(context);
-
-        imgOff = context.getDrawable(R.drawable.blue_button);
-        
-    }
-
-    public BeatButton(ImageButton button, Context context) {
-        super(context);
+    public BeatButton(ImageButton button) {
         this.imageButton = button;
+
+        setupOnClickListener();
     }
 
     public void toggle() {
@@ -45,4 +30,15 @@ public class BeatButton extends ImageButton
             return toggleOn;
         }
     }
+
+    public ImageButton getImageButton() {
+        return imageButton;
+    }
+
+    public void setupOnClickListener() {
+        imageButton.setOnClickListener((view) -> {
+            this.toggle();
+        });
+    }
+
 }
