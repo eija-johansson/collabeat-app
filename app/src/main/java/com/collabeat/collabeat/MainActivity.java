@@ -1,9 +1,11 @@
 package com.collabeat.collabeat;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,45 +13,80 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends Activity {
 
-    ImageButton[] buttons = new ImageButton[16];
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    int[] buttonIds = {
+            R.id.button1,
+            R.id.button2,
+            R.id.button3,
+            R.id.button4,
+            R.id.button5,
+            R.id.button6,
+            R.id.button7,
+            R.id.button8,
+            R.id.button9,
+            R.id.button10,
+            R.id.button11,
+            R.id.button12,
+            R.id.button13,
+            R.id.button14,
+            R.id.button15,
+            R.id.button16,
+    };
+
+    private final int beatGridWidth = buttonIds.length;
+
+    private Context context;
+
+    List<ImageButton> buttons = new ArrayList<>();
+    boolean[] toggleOns = new boolean[beatGridWidth];
+    private final Object lock = new Object();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        this.context = getApplicationContext();
+
         setContentView(R.layout.main_layout);
 
-        buttons[0] = (ImageButton)findViewById(R.id.button1);
-        buttons[1] = (ImageButton)findViewById(R.id.button2);
-        buttons[2] = (ImageButton)findViewById(R.id.button3);
-        buttons[3] = (ImageButton)findViewById(R.id.button4);
-        buttons[4] = (ImageButton)findViewById(R.id.button5);
-        buttons[5] = (ImageButton)findViewById(R.id.button6);
-        buttons[6] = (ImageButton)findViewById(R.id.button7);
-        buttons[7] = (ImageButton)findViewById(R.id.button8);
-        buttons[8] = (ImageButton)findViewById(R.id.button9);
-        buttons[9] = (ImageButton)findViewById(R.id.button10);
-        buttons[10] = (ImageButton)findViewById(R.id.button11);
-        buttons[11] = (ImageButton)findViewById(R.id.button12);
-        buttons[12] = (ImageButton)findViewById(R.id.button13);
-        buttons[13] = (ImageButton)findViewById(R.id.button14);
-        buttons[14] = (ImageButton)findViewById(R.id.button15);
-        buttons[15] = (ImageButton)findViewById(R.id.button16);
+        for (int i = 0; i < toggleOns.length; i++) {
+            toggleOns[i] = false;
+        }
+
+        for (int buttonId : buttonIds) {
+            buttons.add((ImageButton)findViewById(buttonId));
+        }
 
         View beatPanel = findViewById(R.id.beatpanel);
 
-        /*TextView valueTV = new TextView(this);
-        valueTV.setText("hallo hallo");
-        valueTV.setId(5);
-        //valueTV.setLayoutParams(new ViewGroup.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
-        ((LinearLayout) beatPanel).addView(valueTV);*/
+        setupToggleButtonListeners(buttons);
 
         ImageButton imgButton = new ImageButton(this);
         imgButton.setImageDrawable(getResources().getDrawable(R.drawable.light_blue_button));
 
+    }
+
+    private void setupToggleButtonListeners(List<ImageButton> buttons) {
+        for (int i = 0 ; i < buttons.size(); i++) {
+            ImageButton button = buttons.get(i);
+            final int idx = i;
+            button.setOnClickListener((view) -> {
+                updateToggleOn(idx);
+            });
+        }
+    }
+
+    private void updateToggleOn(final int i) {
+        synchronized (lock) {
+            toggleOns[i] = !toggleOns[i];
+        }
     }
 
     @Override
@@ -60,29 +97,33 @@ public class MainActivity extends Activity {
 
     int time = 0;
     Handler handler = new Handler();
-    Runnable rendering = new Runnable() {
-        @Override
-        public void run(){
-
-            // Update
+    Runnable rendering = () -> {
+        // Update
+        synchronized (lock) {
             updateWhichButtonIsHighlighted();
-            time += 1;
-            time %= 16;
-
-            // Trigger again
-            scheduleRendering();
         }
+        time += 1;
+        time %= 16;
+
+        // Trigger again
+        scheduleRendering();
     };
 
     private void updateWhichButtonIsHighlighted(){
         // Clear all to default
+        int i = 0;
         for(ImageButton button : buttons){
-            button.setImageDrawable(getResources().getDrawable(R.drawable.blue_button));
+            boolean on = toggleOns[i];
+            if (on) {
+                button.setImageDrawable(getDrawable(R.drawable.light_blue_button));
+            } else {
+                button.setImageDrawable(getDrawable(R.drawable.blue_button));
+            }
+            i++;
         }
 
         // Update
-        buttons[time].setImageDrawable(getResources().getDrawable(R.drawable.pink_button));
-
+        buttons.get(time).setImageDrawable(getDrawable(R.drawable.pink_button));
 
     }
 
