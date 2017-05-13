@@ -1,11 +1,14 @@
 package com.collabeat.collabeat;
 
 import android.app.Activity;
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
@@ -22,10 +25,13 @@ public class MainActivity extends Activity {
     };
 
     private final int beatGridWidth = buttonIds.length;
+    private static final int beatGridMaxHeight = 7;
 
     List<BeatButton> buttons = new ArrayList<>();
     private final Object lock = new Object();
-    private List<MediaPlayer> playerClaps = new ArrayList<>(beatGridWidth);
+    private List<MediaPlayer> players = new ArrayList<>(beatGridWidth);
+
+    private List<View> beatRows = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,14 +45,35 @@ public class MainActivity extends Activity {
         }
 
         View beatPanel = findViewById(R.id.beatpanel);
+        beatRows.add(beatPanel);
 
         for (int i = 0; i < beatGridWidth ; i++) {
-            MediaPlayer mediaPlayerClap = MediaPlayer.create(getApplicationContext(), R.raw.clap_808);
+            MediaPlayer mediaPlayerClap = MediaPlayer.create(getApplicationContext(), R.raw.tom_short);
             mediaPlayerClap.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayerClap.setLooping(false);
-            playerClaps.add(mediaPlayerClap);
+            players.add(mediaPlayerClap);
         }
 
+        ImageButton addButton = (ImageButton)findViewById(R.id.add_sound);
+        addButton.setOnClickListener(v -> {
+            addSoundRow();
+        });
+
+    }
+
+    private void addSoundRow() {
+        if (beatRows.size() < beatGridMaxHeight) {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            GridLayout parent = (GridLayout) findViewById(R.id.parentPanel);
+            View addPanel = findViewById(R.id.add_panel);
+            parent.removeView(addPanel);
+            View beatPanelView = inflater.inflate(R.layout.beat_row, null);
+            parent.addView(beatPanelView);
+            beatRows.add(beatPanelView);
+            if (beatRows.size() < beatGridMaxHeight) {
+                parent.addView(addPanel);
+            }
+        }
     }
 
     @Override
@@ -86,8 +113,8 @@ public class MainActivity extends Activity {
         currentButton.getImageButton().setImageDrawable(getDrawable(R.drawable.pink_button));
         boolean playSound = currentButton.getToggleOn();
         if (playSound) {
-            MediaPlayer mediaPlayerClap = playerClaps.get(time);
-            mediaPlayerClap.start();
+            MediaPlayer mediaPlayer = players.get(time);
+            mediaPlayer.start();
         }
 
 
