@@ -1,6 +1,8 @@
 package com.collabeat.collabeat;
 
 import android.app.Activity;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -23,6 +25,7 @@ public class MainActivity extends Activity {
 
     List<BeatButton> buttons = new ArrayList<>();
     private final Object lock = new Object();
+    private List<MediaPlayer> playerClaps = new ArrayList<>(beatGridWidth);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,13 @@ public class MainActivity extends Activity {
         }
 
         View beatPanel = findViewById(R.id.beatpanel);
+
+        for (int i = 0; i < beatGridWidth ; i++) {
+            MediaPlayer mediaPlayerClap = MediaPlayer.create(getApplicationContext(), R.raw.clap_808);
+            mediaPlayerClap.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mediaPlayerClap.setLooping(false);
+            playerClaps.add(mediaPlayerClap);
+        }
 
     }
 
@@ -71,8 +81,15 @@ public class MainActivity extends Activity {
             }
         }
 
-        // Update
-        buttons.get(time).getImageButton().setImageDrawable(getDrawable(R.drawable.pink_button));
+        // Highlight current button and if button is on, play sound
+        BeatButton currentButton = buttons.get(time);
+        currentButton.getImageButton().setImageDrawable(getDrawable(R.drawable.pink_button));
+        boolean playSound = currentButton.getToggleOn();
+        if (playSound) {
+            MediaPlayer mediaPlayerClap = playerClaps.get(time);
+            mediaPlayerClap.start();
+        }
+
 
     }
 
