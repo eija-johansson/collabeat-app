@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.main_layout);
 
-        View beatPanel = findViewById(R.id.beatpanel);
+        View beatPanel = findViewById(R.id.beat_panel);
         beatRows.add(new BeatRow(getApplicationContext(), beatPanel, R.raw.tom_short));
 
         ImageButton addButton = (ImageButton)findViewById(R.id.add_sound);
@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
     private void addSoundRow() {
         if (beatRows.size() < beatGridMaxHeight) {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            GridLayout parent = (GridLayout) findViewById(R.id.parentPanel);
+            LinearLayout parent = (LinearLayout) findViewById(R.id.parent_panel);
             View addPanel = findViewById(R.id.add_panel);
             parent.removeView(addPanel);
             View beatPanelView = inflater.inflate(R.layout.beat_row, null);

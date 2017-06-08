@@ -1,439 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout
+    android:id="@+id/parent_panel"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="9">
 
-    <GridLayout
-        android:id="@+id/parentPanel"
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/beat_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="2"
+            android:text="Name of this beat "
+            android:gravity="center_vertical"
+            android:layout_marginStart="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="5"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/join_another_beat_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+
+                android:text="New/join beat"
+                android:layout_marginTop="5dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/beat_panel"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnOrderPreserved="false"
-        android:columnCount="1"
-        android:rowCount="9">
+        >
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1">
+        <ImageButton
+            android:id="@+id/sound_icon_1"
+            android:src="@drawable/music_button"
+            style="@style/BeatButtonStyle"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:text="Name of this beat "
-                android:scaleX="0.5"
-                android:id="@+id/namedisplay"
-                android:layout_row="0"
-                android:layout_column="0" />
+        <ImageButton
+            android:id="@+id/button1"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:text="Join another..."
-                android:scaleX="0.5"
-                android:id="@+id/buttonabove2"
-                android:layout_row="0"
-                android:layout_column="0" />
+        <ImageButton
+            android:id="@+id/button2"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
 
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/button3"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
 
-        <LinearLayout
-            android:id="@+id/beatpanel"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+        <ImageButton
+            android:id="@+id/button4"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
 
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/sound_icon_1"
-                android:src="@drawable/music_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
+        <ImageButton
+            android:id="@+id/button5"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
 
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button1"
-                android:src="@drawable/light_blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
+        <ImageButton
+            android:id="@+id/button6"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
 
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button3"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button4"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button5"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button6"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button7"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button8"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button9"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button10"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button11"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button12"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button13"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button14"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button15"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button16"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/button7"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
+
+        <ImageButton
+            android:id="@+id/button8"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle" />
+
+        <ImageButton
+            android:id="@+id/button9"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
+
+        <ImageButton
+            android:id="@+id/button10"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
+
+        <ImageButton
+            android:id="@+id/button11"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
+
+        <ImageButton
+            android:id="@+id/button12"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
+
+        <ImageButton
+            android:id="@+id/button13"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
+
+        <ImageButton
+            android:id="@+id/button14"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
+
+        <ImageButton
+            android:id="@+id/button15"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
+
+        <ImageButton
+            android:id="@+id/button16"
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="17">
+
+        <ImageButton
+            android:id="@+id/add_sound"
+            android:src="@drawable/button_plus"
+            style="@style/BeatButtonStyle"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:src="@drawable/blue_button"
+            style="@style/BeatButtonStyle"
+            android:visibility="invisible"/>
 
 
-        <LinearLayout
-            android:id="@+id/add_panel"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+    </LinearLayout>
 
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/add_sound"
-                android:src="@drawable/button_plus"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_1"
-                android:src="@drawable/light_blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_2"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_3"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_4"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_5"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_6"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_7"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_8"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_9"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_10"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_11"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_12"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_13"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_14"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_15"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:id="@+id/button2_16"
-                android:src="@drawable/blue_button"
-                android:background="@null"
-                android:adjustViewBounds="true"
-                android:layout_margin="1dp"
-                android:visibility="invisible"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_gravity="right"></LinearLayout>
-    </GridLayout>
 </LinearLayout>
